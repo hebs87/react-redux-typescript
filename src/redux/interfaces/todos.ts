@@ -10,3 +10,7 @@ export interface FetchTodosAction {
   type: ActionTypes.fetchTodos;
   payload: Todo[];
 }
+
+export interface StoreState {
+  todos: Todo[];
+}
