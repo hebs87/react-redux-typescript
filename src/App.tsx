@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import './App.css';
 
-class App extends Component {
+interface AppProps {
+  color?: string;
+}
+
+class App extends Component<AppProps> {
   render () {
     return (
       <h1>Hello World</h1>
