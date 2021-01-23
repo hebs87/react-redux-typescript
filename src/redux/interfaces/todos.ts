@@ -11,6 +11,11 @@ export interface FetchTodosAction {
   payload: Todo[];
 }
 
+export interface DeleteTodoAction {
+  type: ActionTypes.deleteTodo;
+  payload: number;
+}
+
 export interface StoreState {
   todos: Todo[];
 }
