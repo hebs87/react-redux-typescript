@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import './App.css';
+import {connect} from "react-redux";
+import {Todo, StoreState} from "./redux/interfaces/todos";
+import {fetchTodos} from "./redux/actions";
 
 interface AppProps {
-  color?: string;
+  todos: Todo[];
+  fetchTodos(): any;
 }
 
 interface AppState {}
@@ -24,8 +28,8 @@ class App extends Component<AppProps, AppState> {
 
     this.state = {}
   }
-  render () {
 
+  render () {
     return (
       <div>
         <h1>Hello World</h1>
@@ -34,4 +38,11 @@ class App extends Component<AppProps, AppState> {
   }
 }
 
-export default App;
+const mapStateToProps = ({todos}: StoreState): {todos: Todo[]} => {
+  return {todos};
+};
+
+export default connect(
+  mapStateToProps,
+  {fetchTodos}
+)(App);
