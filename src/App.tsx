@@ -26,13 +26,29 @@ class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
 
-    this.state = {}
+    this.state = {};
+  }
+
+  onFetchClick = (): void => {
+    this.props.fetchTodos();
+  };
+
+  renderList = (): JSX.Element[] => {
+    return this.props.todos.map(({id, title, completed}: Todo): JSX.Element => {
+      return <div key={id}>{title}</div>
+    });
   }
 
   render () {
+    const {todos} = this.props;
+    console.log(todos);
     return (
       <div>
-        <h1>Hello World</h1>
+        <button onClick={this.onFetchClick}>Fetch</button>
+        {
+          todos &&
+          this.renderList()
+        }
       </div>
     );
   }
