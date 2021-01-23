@@ -5,9 +5,7 @@ interface AppProps {
   color?: string;
 }
 
-interface AppState {
-  counter: number;
-}
+interface AppState {}
 
 // Function component syntax
 // const App = ({color}: AppProps): JSX.Element => {
@@ -24,34 +22,13 @@ class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
 
-    this.state = {
-      counter: 0,
-    }
+    this.state = {}
   }
-
-  onIncrementClick = (): void=> {
-    let counter = this.state.counter;
-    counter++;
-    this.setState({counter})
-  }
-
-  onDecrementClick = (): void => {
-    let counter = this.state.counter;
-    if (counter > 0) {
-      counter--;
-      this.setState({counter})
-    }
-    return;
-  }
-
   render () {
-    const {counter} = this.state;
 
     return (
       <div>
-        <button onClick={this.onIncrementClick}>Increment</button>
-        <button onClick={this.onDecrementClick}>Decrement</button>
-        <h2>{counter}</h2>
+        <h1>Hello World</h1>
       </div>
     );
   }
