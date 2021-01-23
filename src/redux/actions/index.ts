@@ -1,17 +1,7 @@
 import axios from 'axios';
 import {Dispatch} from 'redux';
 import {ActionTypes} from "../types";
-
-interface Todo {
-  id: number;
-  title: string;
-  completed: boolean;
-}
-
-interface FetchTodosAction {
-  type: ActionTypes.fetchTodos;
-  payload: Todo[];
-}
+import {Todo, FetchTodosAction} from "../interfaces/todos";
 
 const url = 'https://jsonplaceholder.typicode.com/todos';
 
