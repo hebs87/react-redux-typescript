@@ -1,10 +1,12 @@
-import React, {FunctionComponent, ReactElement} from 'react';
+import React, {Component} from 'react';
 import './App.css';
 
-const App: FunctionComponent = (): ReactElement => {
-  return (
-    <h1>Hello World</h1>
-  );
+class App extends Component {
+  render () {
+    return (
+      <h1>Hello World</h1>
+    );
+  }
 }
 
 export default App;
