@@ -10,7 +10,9 @@ interface AppProps {
   deleteTodo: typeof deleteTodo;
 }
 
-interface AppState {}
+interface AppState {
+  loading: boolean;
+}
 
 // Function component syntax
 // const App = ({color}: AppProps): JSX.Element => {
@@ -27,16 +29,25 @@ class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      loading: false,
+    };
   }
 
+  componentDidUpdate(prevProps: AppProps, prevState: AppState) {
+    if (!prevProps.todos.length && this.props.todos.length) {
+      this.setState({loading: false});
+    }
+  };
+
   onFetchClick = (): void => {
+    this.setState({loading: true});
     this.props.fetchTodos();
   };
 
   renderList = (): JSX.Element[] => {
-    return this.props.todos.map(({id, title, completed}: Todo): JSX.Element => {
-      return <div onClick={() => this.onTodoClick(id)} key={id}>{title}</div>
+    return this.props.todos.map(({id, title}: Todo): JSX.Element => {
+      return <p onClick={() => this.onTodoClick(id)} key={id}>{title}</p>
     });
   }
 
@@ -46,10 +57,15 @@ class App extends Component<AppProps, AppState> {
 
   render () {
     const {todos} = this.props;
-    console.log(todos);
+    const {loading} = this.state;
+
     return (
       <div>
         <button onClick={this.onFetchClick}>Fetch</button>
+        {
+          loading &&
+          <p>LOADING...</p>
+        }
         {
           todos &&
           this.renderList()
